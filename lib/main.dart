@@ -9,6 +9,7 @@ class Item {
 
   final String name;
   bool bought = false;
+  int quantity = 1;
 }
 
 class ShoppingApp extends StatelessWidget {
@@ -40,9 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int get leftCount => items.where((item) => !item.bought).length;
 
   void showMessage(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   void addItem() {
@@ -114,10 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                FilledButton(
-                  onPressed: addItem,
-                  child: const Text('Add'),
-                ),
+                FilledButton(onPressed: addItem, child: const Text('Add')),
               ],
             ),
           ),
@@ -125,35 +122,62 @@ class _HomeScreenState extends State<HomeScreen> {
             child: items.isEmpty
                 ? const Center(child: Text('Your list is empty'))
                 : ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  return ListTile(
-                    leading: Icon(
-                      item.bought ? Icons.check_circle : Icons.shopping_basket,
-                    ),
-                    title: Text(
-                      item.name,
-                      style: TextStyle(
-                        decoration:
-                            item.bought ? TextDecoration.lineThrough : null,
-                      ),
-                    ),
-                    onTap: () {
-                      setState(() {
-                        item.bought = !item.bought;
-                      });
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      return ListTile(
+                        leading: Icon(
+                          item.bought
+                              ? Icons.check_circle
+                              : Icons.shopping_basket,
+                        ),
+                        title: Text(
+                          item.name,
+                          style: TextStyle(
+                            decoration: item.bought
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            item.bought = !item.bought;
+                          });
+                        },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.remove),
+                              onPressed: () {
+                                if (item.quantity > 1) {
+                                  setState(() {
+                                    item.quantity--;
+                                  });
+                                }
+                              },
+                            ),
+                            Text('${item.quantity}'),
+                            IconButton(
+                              icon: const Icon(Icons.add),
+                              onPressed: () {
+                                setState(() {
+                                  item.quantity++;
+                                });
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () => removeItem(index),
+                            ),
+                          ],
+                        ),
+                      );
                     },
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => removeItem(index),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
