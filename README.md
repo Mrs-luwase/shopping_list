@@ -28,11 +28,11 @@ On top of that I added:
 
 **Part 4: Undo message after deleting Bread**
 
-![Undo message](screenshots/Part-4-undo-added(1).png)
+![Undo message](screenshots/![Part-4-undo-added (1).png](screenshots/Part-4-undo-added%20%281%29.png)
 
 **Part 4: Bread back in the same place after tapping Undo**
 
-![After undo](screenshots/Part-4-undo-added(2).png)
+![After undo]![Part-4-undo-added (2).png](screenshots/Part-4-undo-added%20%282%29.png)
 
 ## How to run
 
