@@ -24,15 +24,15 @@ On top of that I added:
 
 **Part 2: quantities** (Milk has quantity 4)
 
-![Quantities](screenshots/part2-quantities.png)
+![Quantities](screenshots/Part-2-quatities.PNG)
 
 **Part 4: Undo message after deleting Bread**
 
-![Undo message](screenshots/part4-undo-message.png)
+![Undo message](screenshots/Part-4-undo-added(1).png)
 
 **Part 4: Bread back in the same place after tapping Undo**
 
-![After undo](screenshots/part4-undo-restored.png)
+![After undo](screenshots/Part-4-undo-added(2).png)
 
 ## How to run
 
