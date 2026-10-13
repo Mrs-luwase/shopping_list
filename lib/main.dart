@@ -51,11 +51,18 @@ class _HomeScreenState extends State<HomeScreen> {
       showMessage('Type an item first');
       return;
     }
-    final exists = items.any(
-      (item) => item.name.toLowerCase() == text.toLowerCase(),
+    final matches = items.where(
+          (item) => item.name.toLowerCase() == text.toLowerCase(),
     );
-    if (exists) {
-      showMessage('$text is already on the list');
+    if (matches.isNotEmpty) {
+      final existing = matches.first;
+      setState(() {
+        existing.quantity++;
+      });
+      showMessage(
+        '${existing.name} is already on the list: now ×${existing.quantity}',
+      );
+      controller.clear();
       return;
     }
     setState(() {
