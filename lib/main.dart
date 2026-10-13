@@ -122,36 +122,38 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final item = items[index];
-                return ListTile(
-                  leading: Icon(
-                    item.bought ? Icons.check_circle : Icons.shopping_basket,
-                  ),
-                  title: Text(
-                    item.name,
-                    style: TextStyle(
-                      decoration:
-                          item.bought ? TextDecoration.lineThrough : null,
+            child: items.isEmpty
+                ? const Center(child: Text('Your list is empty'))
+                : ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final item = items[index];
+                  return ListTile(
+                    leading: Icon(
+                      item.bought ? Icons.check_circle : Icons.shopping_basket,
                     ),
-                  ),
-                  onTap: () {
-                    setState(() {
-                      item.bought = !item.bought;
-                    });
-                  },
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => removeItem(index),
-                  ),
-                );
-              },
+                    title: Text(
+                      item.name,
+                      style: TextStyle(
+                        decoration:
+                            item.bought ? TextDecoration.lineThrough : null,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        item.bought = !item.bought;
+                      });
+                    },
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () => removeItem(index),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
     );
   }
 }
