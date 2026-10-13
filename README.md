@@ -2,7 +2,6 @@
 
 My Week 2 Mobile Programming assignment (Session 3). It is a shopping list app built with Flutter and Dart. I started from the finished Shopping List app (guide steps 1 to 8) and added upgrades one part at a time, with one commit per part.
 
-I am a first-year BSc IT student and this is my first Flutter app, so I wrote this README in my own words to show what I understand.
 
 ## Status
 
