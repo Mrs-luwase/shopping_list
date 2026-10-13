@@ -72,11 +72,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void removeItem(int index) {
-    final name = items[index].name;
+    final item = items[index];
     setState(() {
       items.removeAt(index);
     });
-    showMessage('$name removed');
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${item.name} removed'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              items.insert(index, item);
+            });
+          },
+        ),
+      ),
+    );
   }
 
   void clearBought() {
